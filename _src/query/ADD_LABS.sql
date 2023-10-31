@@ -20,25 +20,9 @@ select count (*) from labs_in_hospital
 
 --- STEP 2: Filter the results (as there are multiple charting events, I only want 1 as close to OR OUT time)
 
---- VERSION 1 (manual target time as 3390)
-WITH input_time AS (
-SELECT 3390 AS desired_time
-)
-
-SELECT
-    subject_id,
-    chart_time,
-    item_name,
-    value,
-    ABS(chart_time - (SELECT desired_time FROM input_time)) AS time_difference
-FROM
-    labs_in_hospital, input_time where subject_id=100002094
-ORDER BY
-    time_difference ASC
-LIMIT 2;  -- how many lab results do you want to bring back? (probably should be the legnth of the filtered list above)
-
-
 -------VERSION 2 :: Use a JOIN it to the OR table.
+DROP TABLE IF EXISTS labs_in_hospital_filter;
+CREATE TABLE labs_in_hospital_filter as
 WITH NearestTime AS (
     SELECT
         labs.subject_id,
@@ -65,7 +49,31 @@ FROM
 WHERE
     rank <=16
 ---------------------------------
+
+
+
 --------------------------------------------------------------------------
+
+--- VERSION 1 (manual target time as 3390)
+WITH input_time AS (
+SELECT 3390 AS desired_time
+)
+
+SELECT
+    subject_id,
+    chart_time,
+    item_name,
+    value,
+    ABS(chart_time - (SELECT desired_time FROM input_time)) AS time_difference
+FROM
+    labs_in_hospital, input_time where subject_id=100002094
+ORDER BY
+    time_difference ASC
+LIMIT 2;  -- how many lab results do you want to bring back? (probably should be the legnth of the filtered list above)
+
+
+
+
 --------------------------------------------------------------------------
 
 

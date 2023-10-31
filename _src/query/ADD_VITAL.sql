@@ -22,7 +22,9 @@ select count (*) from vitals_in_hospital
 
 
 ------------ PART 2: JOIN AND FILTER TO BE CLOSE IN TIME TO OR_OUT
-    WITH NearestTime AS (
+DROP TABLE IF EXISTS vitals_in_hospital_filter;
+CREATE TABLE vitals_in_hospital_filter as
+WITH NearestTime AS (
     SELECT
         vital.op_id,
         vital.subject_id,
@@ -49,10 +51,8 @@ FROM
     NearestTime
 WHERE
     rank <=22;
-
-
 -----------------------------------------------------
-
+select count (distinct op_id) from vitals_in_hospital -- CHECK!!! OK
 
 ----------------------------------------------------------------------------------
 ---------------------------------- PART 2 - use python. Run away from below!!!
