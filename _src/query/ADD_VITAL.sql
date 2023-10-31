@@ -1,5 +1,3 @@
--- TODO: investigate why there are still many vitals that are not captured by the cross tab query.
--- TODO: USE THIS FORMAT FOR THE OTHER VITALS AND LABS
 
 ------------ PART 1: CREATE FILTEREDE VITALS TABLE
 
@@ -12,6 +10,9 @@ JOIN operation_pcd O ON V.op_id = O.op_id
 WHERE V.chart_time >= O.orout_time;
 select count (*) from vitals_postop;
 
+-- vitals_postop v1 : 1640966
+
+----------------------------------------------------------------------------------
 ---------------------------------- PART 2 - use python. Run away from below!!!
 
 

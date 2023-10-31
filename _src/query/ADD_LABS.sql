@@ -7,8 +7,7 @@ JOIN operation_pcd O ON V.op_id = O.op_id
 WHERE V.chart_time >= O.orout_time;
 select count (*) from vitals_postop;
 
-
--- Create Fitlered LABS:: REMOVE any LABS before admit and after Dx
+-- STEP 1: Create Fitltered LABS:: REMOVE any LABS before admit and after Dx
 DROP TABLE IF EXISTS labs_in_hospital;
 CREATE TABLE labs_in_hospital AS
 WITH Deduplicated AS (
@@ -23,11 +22,13 @@ FROM Deduplicated
 WHERE rn = 1 AND item_name IN ('alp','alt','ast','chloride','creatinine','crp','glucose','hb','hba1c','hco3','lymphocyte','platelet','potassium','sodium','total_bilirubin','wbc');
 
 select count (*) from labs_in_hospital
+------------------------------------------------------
 -- labs table has 21,367,131
 -- labs_in_hopsital has 13,714,214
 -- labs in hosptial with select tests has 7,759,999
 
---- FURTHER WORK to filter the results (as there are multiple charting events, I only want 1)
+--- STEP 2: Filter the results (as there are multiple charting events, I only want 1)
+
 --- VERSION 1 (manual target time as 3390)
 WITH input_time AS (
 SELECT 3390 AS desired_time
@@ -46,7 +47,7 @@ ORDER BY
 LIMIT 2;  -- how many lab results do you want to bring back? (probably should be the legnth of the filtered list above)
 
 
------------------ NOW LETS join it to the OR table.
+-------VERSION 2 :: Use a JOIN it to the OR table.
 WITH NearestTime AS (
     SELECT
         labs.subject_id,
@@ -71,13 +72,17 @@ SELECT
 FROM
     NearestTime
 WHERE
-    rank <=16 and subject_id=100002094;
-
+    rank <=16
 ---------------------------------
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
 
 
 
---- PART 1 - FILTER THE LABS TABLE
+-- MOCK up and OLD WORK:
+
+
+--- FILTER THE LABS TABLE
 -- Create Fitlered LABS:: REMOVE any LABS before admit and after Dx
 DROP TABLE IF EXISTS labs_in_hospital
 CREATE TABLE labs_in_hospital AS
@@ -93,6 +98,8 @@ FROM Deduplicated
 WHERE rn = 1;
 
 
+
+--------------------------------------------------------------------------
 -- ORIGINAL TABLE THAT HAD DUPLICATES
 CREATE TABLE labs_in_hospital AS
 SELECT l.*
@@ -105,7 +112,7 @@ WHERE l.chart_time >= O.admission_time AND l.chart_time < o.discharge_time;
 
 
 
--- DONT NOT MESS WITH THE BELOW
+-- DONT NOT MESS WITH THE BELOW (old old version)
 DROP TABLE if EXISTS  tmp_min_chart_time_lab
 Create table tmp_min_chart_time_lab AS (
     SELECT l.subject_id, MIN(l.chart_time) as chart_time, item_name, value
