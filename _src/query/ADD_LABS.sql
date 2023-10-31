@@ -1,3 +1,82 @@
+-- Create a  filtered Vitals table :: REMOVE ANY vitals BEFORE OR_OUT
+-- result: reduces record count from 8M to 1.6M.
+CREATE TABLE Vitals_postop AS
+SELECT V.*
+FROM Vitals V
+JOIN operation_pcd O ON V.op_id = O.op_id
+WHERE V.chart_time >= O.orout_time;
+select count (*) from vitals_postop;
+
+
+-- Create Fitlered LABS:: REMOVE any LABS before admit and after Dx
+DROP TABLE IF EXISTS labs_in_hospital;
+CREATE TABLE labs_in_hospital AS
+WITH Deduplicated AS (
+    SELECT l.*,
+           ROW_NUMBER() OVER(PARTITION BY l.subject_id, l.chart_time, l.item_name, l.value ORDER BY l.subject_id) as rn
+    FROM labs l
+    JOIN operation_pcd O ON l.subject_id = O.subject_id
+    WHERE l.chart_time >= O.admission_time AND l.chart_time < O.discharge_time
+)
+SELECT subject_id, chart_time, item_name, value -- and other columns you have in 'labs'
+FROM Deduplicated
+WHERE rn = 1 AND item_name IN ('alp','alt','ast','chloride','creatinine','crp','glucose','hb','hba1c','hco3','lymphocyte','platelet','potassium','sodium','total_bilirubin','wbc');
+
+select count (*) from labs_in_hospital
+-- labs table has 21,367,131
+-- labs_in_hopsital has 13,714,214
+-- labs in hosptial with select tests has 7,759,999
+
+--- FURTHER WORK to filter the results (as there are multiple charting events, I only want 1)
+--- VERSION 1 (manual target time as 3390)
+WITH input_time AS (
+SELECT 3390 AS desired_time
+)
+
+SELECT
+    subject_id,
+    chart_time,
+    item_name,
+    value,
+    ABS(chart_time - (SELECT desired_time FROM input_time)) AS time_difference
+FROM
+    labs_in_hospital, input_time where subject_id=100002094
+ORDER BY
+    time_difference ASC
+LIMIT 2;  -- how many lab results do you want to bring back? (probably should be the legnth of the filtered list above)
+
+
+----------------- NOW LETS join it to the OR table.
+WITH NearestTime AS (
+    SELECT
+        labs.subject_id,
+        labs.chart_time,
+        labs.item_name,
+        labs.value,
+        ops.orout_time,
+        ROW_NUMBER() OVER(PARTITION BY ops.subject_id, ops.orout_time ORDER BY ABS(labs.chart_time - ops.orout_time)) AS rank
+    FROM
+        labs_in_hospital AS labs
+    JOIN
+        operation_pcd AS ops -- use the root table as there are definitely no duplicates or curiousness.
+    ON
+        labs.subject_id = ops.subject_id
+)
+SELECT
+    subject_id,
+    chart_time,
+    item_name,
+    value,
+    orout_time
+FROM
+    NearestTime
+WHERE
+    rank <=16 and subject_id=100002094;
+
+---------------------------------
+
+
+
 --- PART 1 - FILTER THE LABS TABLE
 -- Create Fitlered LABS:: REMOVE any LABS before admit and after Dx
 DROP TABLE IF EXISTS labs_in_hospital
