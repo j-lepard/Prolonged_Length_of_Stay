@@ -1,12 +1,3 @@
--- Create a  filtered Vitals table :: REMOVE ANY vitals BEFORE OR_OUT
--- result: reduces record count from 8M to 1.6M.
-CREATE TABLE Vitals_postop AS
-SELECT V.*
-FROM Vitals V
-JOIN operation_pcd O ON V.op_id = O.op_id
-WHERE V.chart_time >= O.orout_time;
-select count (*) from vitals_postop;
-
 -- STEP 1: Create Fitltered LABS:: REMOVE any LABS before admit and after Dx
 DROP TABLE IF EXISTS labs_in_hospital;
 CREATE TABLE labs_in_hospital AS
