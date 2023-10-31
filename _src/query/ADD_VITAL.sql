@@ -1,5 +1,62 @@
 
------------- PART 1: CREATE FILTEREDE VITALS TABLE
+------------ PART 1: CREATE FILTERED VITALS TABLE
+
+
+-- vitals_postop v1 : 1640966
+
+DROP TABLE IF EXISTS vitals_in_hospital;
+CREATE TABLE vitals_in_hospital AS
+WITH Deduplicated AS (
+    SELECT v.*,
+           ROW_NUMBER() OVER(PARTITION BY v.op_id,v.subject_id, v.chart_time, v.item_name, v.value ORDER BY v.subject_id) as rn
+    FROM vitals v
+    JOIN operation_pcd O ON v.subject_id = O.subject_id
+    WHERE v.chart_time >= O.admission_time AND v.chart_time < O.discharge_time
+)
+SELECT op_id,subject_id, chart_time, item_name, value -- and other columns you have in 'labs'
+FROM Deduplicated
+WHERE rn = 1 AND item_name IN ('art_dbp','art_mbp','art_sbp','bis','bt','ci','cvp','ffp','ftn','pap_dbp','pap_mbp','pap_sbp','pip','pmean','rbc','rr','uo','vt','bt','hr','rr','spo2');
+
+
+select count (*) from vitals_in_hospital
+
+
+------------ PART 2: JOIN AND FILTER TO BE CLOSE IN TIME TO OR_OUT
+    WITH NearestTime AS (
+    SELECT
+        vital.op_id,
+        vital.subject_id,
+        vital.chart_time,
+        vital.item_name,
+        vital.value,
+        ops.orout_time,
+        ROW_NUMBER() OVER(PARTITION BY ops.op_id, ops.subject_id, ops.orout_time ORDER BY ABS(vital.chart_time - ops.orout_time)) AS rank
+    FROM
+        vitals_in_hospital AS vital
+    JOIN
+        operation_pcd AS ops -- use the root table as there are definitely no duplicates or curiousness.
+    ON
+        vital.op_id = ops.op_id
+)
+SELECT
+    op_id,
+    subject_id,
+    chart_time,
+    item_name,
+    value,
+    orout_time
+FROM
+    NearestTime
+WHERE
+    rank <=22;
+
+
+-----------------------------------------------------
+
+
+----------------------------------------------------------------------------------
+---------------------------------- PART 2 - use python. Run away from below!!!
+
 
 -- Create a  filtered Vitals table :: REMOVE ANY vitals BEFORE OR_OUT
 -- result: reduces record count from 8M to 1.6M.
@@ -9,13 +66,6 @@ FROM Vitals V
 JOIN operation_pcd O ON V.op_id = O.op_id
 WHERE V.chart_time >= O.orout_time;
 select count (*) from vitals_postop;
-
--- vitals_postop v1 : 1640966
-
-----------------------------------------------------------------------------------
----------------------------------- PART 2 - use python. Run away from below!!!
-
-
 
 
 

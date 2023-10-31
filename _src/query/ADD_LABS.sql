@@ -18,7 +18,7 @@ select count (*) from labs_in_hospital
 -- labs_in_hopsital has 13,714,214
 -- labs in hosptial with select tests has 7,759,999
 
---- STEP 2: Filter the results (as there are multiple charting events, I only want 1)
+--- STEP 2: Filter the results (as there are multiple charting events, I only want 1 as close to OR OUT time)
 
 --- VERSION 1 (manual target time as 3390)
 WITH input_time AS (
