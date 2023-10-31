@@ -1,7 +1,7 @@
 DROP TABLE if EXISTS operations_fulldata;
 CREATE TABLE operations_fulldata AS (
-            select op_id,
-                   o.subject_id as subject_id_ops,
+            SELECT o.op_id,
+                   o.subject_id,
                    hadm_id,
                    case_id,
                    opdate,
@@ -19,7 +19,7 @@ CREATE TABLE operations_fulldata AS (
                    desc_short,
                    category_id,
                    orin_time,
-                   o.orout_time as orout_time_ops,
+                   o.orout_time as or_out_time,
                    opstart_time,
                    opend_time,
                    admission_time,
@@ -31,14 +31,17 @@ CREATE TABLE operations_fulldata AS (
                    icuin_time,
                    icuout_time,
                    inhosp_death_time,
-                   o.chart_time as chart_time_ops,
-                   o.item_name as vital_name,
-                   o.value as vita_value,
-                   l.subject_id as subject_id_lab,
-                   l.chart_time as chart_time_lab,
-                   l.item_name as lab_name,
+                   v.op_id as vital_opid,
+                   v.subject_id as vital_subject,
+                   v.chart_time as vital_chart_time,
+                   v.item_name as vital_name,
+                   v.value as vital_value,
+                   l.subject_id as lab_subject,
+                   l.chart_time as lab_chart_time,
+                   l.item_name as lab_test,
                    l.value as lab_value,
-                   l.orout_time as orout_lab
-            FROM operations_details_vitals o
-            left JOIN labs_in_hospital_filter l ON o.subject_id=l.subject_id
+                   l.orout_time as lab_orout
+            FROM operation_pcd o
+            left JOIN vitals_in_hospital v ON o.op_id=v.op_id
+            left Join labs_in_hospital_filter l ON o.subject_id=l.subject_id
             )
