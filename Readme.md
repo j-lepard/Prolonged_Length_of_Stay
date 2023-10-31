@@ -8,6 +8,7 @@ The INSPIRE dataset is a publicly available research dataset in perioperative me
 
 # Methods
  * [ ] Database preparaiton
+ * [ ] EDA
  * [ ] Pre-processing
  * [ ] Models
    * [ ] baseline LR or Log?
@@ -17,10 +18,19 @@ The INSPIRE dataset is a publicly available research dataset in perioperative me
    * [ ] Azure..
   
 # Database preparation
+- find and import ICD - CM
+- import ICD-PCS
+- create query and join tables
+  
+# Exploratory Data Evaluation
 
 # Pre-processing
 
 # Machine Learning Models
+
+## Training 
+
+## Evaluation
 
 # Deployment
 
