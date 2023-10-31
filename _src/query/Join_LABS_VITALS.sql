@@ -1,5 +1,44 @@
-select *
-
-FROM operation_pcd o
-left JOIN operation_first_vitals v ON o.op_id=v.op_id
-left join operation_first_labs l ON o.subject_id=l.subject_id
+DROP TABLE if EXISTS operations_fulldata;
+CREATE TABLE operations_fulldata AS (
+            select op_id,
+                   o.subject_id as subject_id_ops,
+                   hadm_id,
+                   case_id,
+                   opdate,
+                   age,
+                   sex,
+                   weight,
+                   height,
+                   race,
+                   asa,
+                   emop,
+                   department,
+                   antype,
+                   icd10_pcs,
+                   category_desc,
+                   desc_short,
+                   category_id,
+                   orin_time,
+                   o.orout_time as orout_time_ops,
+                   opstart_time,
+                   opend_time,
+                   admission_time,
+                   discharge_time,
+                   anstart_time,
+                   anend_time,
+                   cpbon_time,
+                   cpboff_time,
+                   icuin_time,
+                   icuout_time,
+                   inhosp_death_time,
+                   o.chart_time as chart_time_ops,
+                   o.item_name as vital_name,
+                   o.value as vita_value,
+                   l.subject_id as subject_id_lab,
+                   l.chart_time as chart_time_lab,
+                   l.item_name as lab_name,
+                   l.value as lab_value,
+                   l.orout_time as orout_lab
+            FROM operations_details_vitals o
+            left JOIN labs_in_hospital_filter l ON o.subject_id=l.subject_id
+            )
