@@ -12,44 +12,60 @@ SELECT subject_id, chart_time, item_name, value -- and other columns you have in
 FROM Deduplicated
 WHERE rn = 1 AND item_name IN ('alp','alt','ast','chloride','creatinine','crp','glucose','hb','hba1c','hco3','lymphocyte','platelet','potassium','sodium','total_bilirubin','wbc');
 
-select count (*) from labs_in_hospital
+select count (*) from labs_in_hospital;
 ------------------------------------------------------
 -- labs table has 21,367,131
 -- labs_in_hopsital has 13,714,214
 -- labs in hosptial with select tests has 7,759,999
+-- labs in hospital filter = 629,055
 
 --- STEP 2: Filter the results (as there are multiple charting events, I only want 1 as close to OR OUT time)
-
 -------VERSION 2 :: Use a JOIN it to the OR table.
 DROP TABLE IF EXISTS labs_in_hospital_filter;
 CREATE TABLE labs_in_hospital_filter as
-WITH NearestTime AS (
+WITH ClosestChartTime AS (
     SELECT
         labs.subject_id,
         labs.chart_time,
-        labs.item_name,
-        labs.value,
         ops.orout_time,
-        ROW_NUMBER() OVER(PARTITION BY ops.subject_id, ops.orout_time ORDER BY ABS(labs.chart_time - ops.orout_time)) AS rank
+        ROW_NUMBER() OVER (PARTITION BY ops.subject_id, ops.orout_time ORDER BY ABS(labs.chart_time - ops.orout_time)) AS time_rank
     FROM
         labs_in_hospital AS labs
     JOIN
-        operation_pcd AS ops -- use the root table as there are definitely no duplicates or curiousness.
+        operation_pcd AS ops
     ON
         labs.subject_id = ops.subject_id
-)
+    ),
+    RankedItems AS (
+        SELECT
+            labs.subject_id,
+            labs.chart_time,
+            labs.item_name,
+            labs.value,
+            cct.orout_time,
+            ROW_NUMBER() OVER (PARTITION BY labs.subject_id, labs.chart_time ORDER BY item_name) AS item_rank -- Replace <some_criteria_for_top_items> with your own criteria.
+        FROM
+            labs_in_hospital AS labs
+        INNER JOIN
+            ClosestChartTime AS cct
+        ON
+            labs.subject_id = cct.subject_id AND
+            labs.chart_time = cct.chart_time
+        WHERE
+            cct.time_rank = 1
+    )
 SELECT
     subject_id,
     chart_time,
     item_name,
     value,
-    orout_time
+    orout_time as nearest_orout
 FROM
-    NearestTime
+    RankedItems
 WHERE
-    rank <=16
+    item_rank <= 16;
 ---------------------------------
-
+select count (*) from labs_in_hospital_filter
 
 
 --------------------------------------------------------------------------

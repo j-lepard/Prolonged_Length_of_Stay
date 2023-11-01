@@ -3,7 +3,6 @@ CREATE TABLE operations_fulldata AS (
             SELECT o.op_id,
                    o.subject_id,
                    hadm_id,
-                   case_id,
                    opdate,
                    age,
                    sex,
@@ -40,8 +39,10 @@ CREATE TABLE operations_fulldata AS (
                    l.chart_time as lab_chart_time,
                    l.item_name as lab_test,
                    l.value as lab_value,
-                   l.orout_time as lab_orout
+                   l.nearest_orout
             FROM operation_pcd o
-            left JOIN vitals_in_hospital v ON o.op_id=v.op_id
+            left JOIN vitals_in_hospital_filter v ON o.op_id=v.op_id
             left Join labs_in_hospital_filter l ON o.subject_id=l.subject_id
             )
+
+select count (*) from operations_fulldata

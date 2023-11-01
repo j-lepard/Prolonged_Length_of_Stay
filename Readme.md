@@ -34,6 +34,12 @@ The dataframe used for exploratory data analysis was comprised from a series of 
   
 # Exploratory Data Evaluation
 
+>**Vitals** - Drop features with high nulls  
+![Alt text](_images/VITALS_nulls_toDrop.png)
+
+
+> **Labs** - Drop features with high nulls  
+> ![Alt text](_images/Labs_toDrop.png)
 # Pre-processing
 
 # Machine Learning Models

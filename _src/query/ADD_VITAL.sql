@@ -18,11 +18,64 @@ FROM Deduplicated
 WHERE rn = 1 AND item_name IN ('art_dbp','art_mbp','art_sbp','bis','bt','ci','cvp','ffp','ftn','pap_dbp','pap_mbp','pap_sbp','pip','pmean','rbc','rr','uo','vt','bt','hr','rr','spo2');
 
 
-select count (*) from vitals_in_hospital
+select count (*) from vitals_in_hospital;
 
 
 ------------ PART 2: JOIN AND FILTER TO BE CLOSE IN TIME TO OR_OUT
 DROP TABLE IF EXISTS vitals_in_hospital_filter;
+CREATE TABLE vitals_in_hospital_filter as
+WITH ClosestChartTime AS (
+    SELECT
+        vital.op_id,
+        vital.subject_id,
+        vital.chart_time,
+        ops.orout_time,
+        ROW_NUMBER() OVER (PARTITION BY ops.subject_id, ops.orout_time ORDER BY ABS(vital.chart_time - ops.orout_time)) AS time_rank
+    FROM
+        vitals_in_hospital AS vital
+    JOIN
+        operation_pcd AS ops
+    ON
+        vital.subject_id = ops.subject_id
+    ),
+    RankedItems AS (
+        SELECT
+            vital.op_id,
+            vital.subject_id,
+            vital.chart_time,
+            vital.item_name,
+            vital.value,
+            cct.orout_time,
+            ROW_NUMBER() OVER (PARTITION BY vital.subject_id, vital.chart_time ORDER BY item_name) AS item_rank --
+        FROM
+            vitals_in_hospital AS vital
+        INNER JOIN
+            ClosestChartTime AS cct
+        ON
+            vital.subject_id = cct.subject_id AND
+            vital.chart_time = cct.chart_time
+        WHERE
+            cct.time_rank = 1
+    )
+SELECT
+    op_id,
+    subject_id,
+    chart_time,
+    item_name,
+    value,
+    orout_time as nearest_orout
+FROM
+    RankedItems
+WHERE
+    item_rank <= 16;
+---------------------------------
+select count (distinct op_id) from vitals_in_hospital; -- CHECK!!! OK
+
+
+
+  ------------------------------
+
+    DROP TABLE IF EXISTS vitals_in_hospital_filter;
 CREATE TABLE vitals_in_hospital_filter as
 WITH NearestTime AS (
     SELECT
