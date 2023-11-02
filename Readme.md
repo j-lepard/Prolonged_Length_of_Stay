@@ -64,7 +64,8 @@ Lines of inquiry:
 > 
 # Pre-processing
 ### Operations
-* [ ] create flag (0/1) if person went to ICU post op. 
+* [x] create flag (0/1) if person went to ICU post op
+* [x] flag if the subject is an outlier. 
 
 ### Features: 
 * [ ] set threshold for drop vs impute clinical features (ex. bp)
