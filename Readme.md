@@ -68,8 +68,9 @@ Lines of inquiry:
 * [x] flag if the subject is an outlier. 
 
 ### Features: 
-* [ ] set threshold for drop vs impute clinical features (ex. bp)
-* 
+* [x] set threshold for drop vs impute clinical features (ex. bp)
+* [x] impute means for NaN (grouped by ASA, sex, and Age)
+* [ ] 
 # Machine Learning Models
 
 ## Training 
