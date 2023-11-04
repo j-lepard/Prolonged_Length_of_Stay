@@ -152,10 +152,23 @@ The features selected for future analysis and inclusion in the modelling are pro
 
 ## Evaluation
 
+![Alt text](_images/Model_baselines.png)
+
+
 # Deployment
 
 # Discussion
 
 # Conclusion
 
+# Future Considerations
 
+### Models
+
+LightGBM:
+
+LightGBM provides support for categorical features and handles them efficiently. It uses techniques like "Histogram-based Learning" and "Gradient-based One-Side Sampling (GOSS)" to process categorical features without the need for one-hot encoding. This means that you can use LightGBM directly with datasets that contain categorical variables, and it will handle them seamlessly. LightGBM also allows you to specify which columns are categorical, making it suitable for mixed data types.
+
+CatBoost:
+
+CatBoost is designed specifically with a focus on categorical feature handling. It uses a specialized method for encoding categorical variables called "Ordered Target Encoding." CatBoost automatically detects and encodes categorical features without manual intervention. It also includes techniques like "Ordered Boosting" and "Bayesian Regularization" to improve performance and reduce overfitting.
