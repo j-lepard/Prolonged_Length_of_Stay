@@ -98,17 +98,38 @@ Feature categories:
 
 ### PCA Interpretation and Impact on Feature Selection
 
-Demographics:   
+**Hyperparameters:**
+| Feature Group | N |
+|---------------|---|
+|demographic_columns| 2|
+| operation_columns |4|
+| clinical_columns| 4|
+| procedure_columns| 4|
+
+
+Demographics: 
+
 > ![Alt text](_images/PCA_Demo_features_selected.svg)
   
 Operations: 
+> ![Alt text](<_images/PCA_ Operation_features_selected.svg>)  
 
-Procedure: 
+
+Procedure:   
+
+> ![Alt text](_images/PCA_Procedure_features_selected.svg)  
 
 Clinicial: 
 
+> ![Alt text](_images/PCA_Clinical_features_selected.svg)
 
+Impact of PCA on Feature Selection: 
 
+The most impactful 47 features of the original, encoded data set have been identified and the four-phased Principle Component Analysis. The original data set contained >140 features. These have now been reduced to 47. 
+
+The features selected for future analysis and inclusion in the modelling are provide below with a description: 
+
+> ![Alt text](_images/PCA_FINAL_features_selected.svg)
 
 # Machine Learning Models
 
