@@ -2,6 +2,10 @@
 
 Prolonged Hospital Length of Stay (PLOS) is an indicator of deteriorated efficiency in Quality of Care `1`. In addition, it has considerable implications on surgical unit operation. PLOS is a high driver for surgery cancellations. One goal of public health management is to reduce PLOS by identifying its most relevant predictors and initiating mitigations early in the care pathway. The objective of this project is to explore Machine Learning (ML) models that best predict PLOS and then deploy the model. The successful proof of concept will see a hospital operation leader upload (anonymous) information and receive a risk profile and predicted LOS for the patients on the ward.  
 
+# Hypothesis
+
+The post-oparative legnth of stay (LOS) and correspondingly, the risk of prolonged length of stay, can be accurately predicted at the time of admission to the recovery ward. Data points test the hypothesis include select patient demographic, surgey logistic information, and clinical information at the conclusion of the procedure.   
+
 # Dataset
 
 The INSPIRE dataset is a publicly available research dataset in perioperative medicine, which includes approximately 130,000 cases who underwent anesthesia for surgery at an academic institution in South Korea between 2011 and 2020. This dataset includes patient characteristics such as age, sex, physical status classification, diagnosis, surgical procedure code, department, and type of anesthesia. It also includes vital signs in the operating theatre, general wards, and intensive care units (ICUs), laboratory results from six months before admission to six months after discharge, and medication during hospitalization. `2`
@@ -77,7 +81,7 @@ Lines of inquiry:
 * [ ] heamaps
 
 ## Principle Component Analysis
-Following categorical encoding (one-hot), there were >150 features within the dataset. The majority of the features were a result of encoding the surgery type and the clinicial (vitals/labs)features. 
+Following categorical encoding (one-hot), there were >160 features within the dataset. The majority of the features were a result of encoding the surgery type and the clinicial (vitals/labs)features. 
 
 A single PCA would not be appropriate to reduce the features. Elected to group features into 4 catergories and identify optimatl principle components then most influential features within. 
 
@@ -125,7 +129,7 @@ Clinicial:
 
 Impact of PCA on Feature Selection: 
 
-The most impactful 47 features of the original, encoded data set have been identified and the four-phased Principle Component Analysis. The original data set contained >140 features. These have now been reduced to 47. 
+The most impactful 47 features of the original, encoded data set have been identified and the four-phased Principle Component Analysis. The original data set contained 170 features. These have now been reduced to 47. 
 
 The features selected for future analysis and inclusion in the modelling are provide below with a description: 
 
@@ -133,7 +137,18 @@ The features selected for future analysis and inclusion in the modelling are pro
 
 # Machine Learning Models
 
+
+
 ## Training 
+
+
+### Data Split
+* Training Set: Used to train your models.  
+* Validation Set: Used to fine-tune hyperparameters, select models, and monitor training progress. 
+* Testing Set: Used to evaluate the final model's performance on unseen data and estimate its generalization performance.
+
+>![Alt text](_images/train_test_val_split.png)
+
 
 ## Evaluation
 
