@@ -11,7 +11,7 @@ The INSPIRE dataset is a publicly available research dataset in perioperative me
  * [ ] EDA
  * [ ] Pre-processing
  * [ ] Models
-   * [ ] baseline LR or Log?
+   * [ ] baseline LR 
    * [ ] XGBoost
    * [ ] neural network
  * [ ] Deployment
@@ -70,7 +70,46 @@ Lines of inquiry:
 ### Features: 
 * [x] set threshold for drop vs impute clinical features (ex. bp)
 * [x] impute means for NaN (grouped by ASA, sex, and Age)
-* [ ] 
+
+### Correlelation
+* [ ] review correlations between procedures and LOS
+* [ ] review correlation between labs and LOS
+* [ ] heamaps
+
+## Principle Component Analysis
+Following categorical encoding (one-hot), there were >150 features within the dataset. The majority of the features were a result of encoding the surgery type and the clinicial (vitals/labs)features. 
+
+A single PCA would not be appropriate to reduce the features. Elected to group features into 4 catergories and identify optimatl principle components then most influential features within. 
+
+Feature categories: 
+* Dempographic - height, weight, ASA
+* Operation - logisitics of the operation iteself
+* Procedure - the type of operations by PCD category (heart, ears, feet)
+* Clinical - vital signs and laboratory results taken as proximal to the end of operation time stamp. 
+
+### Initial PCA (N count): 
+* demographic_columns, 'N': 2
+* operation_columns, 'N': 6
+* clinical_columns, 'N': 6
+* procedure_columns, 'N': 6
+
+![Alt text](_images/PCA_skree_plots.svg)
+
+
+### PCA Interpretation and Impact on Feature Selection
+
+Demographics:   
+> ![Alt text](_images/PCA_Demo_features_selected.svg)
+  
+Operations: 
+
+Procedure: 
+
+Clinicial: 
+
+
+
+
 # Machine Learning Models
 
 ## Training 

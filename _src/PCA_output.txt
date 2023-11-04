@@ -1,0 +1,699 @@
+Feature Group: demographic_columns, Principal Component 1 Summary:
+   Loadings  Explained Variance for Component 1 Feature Names  Abs Loadings
+5  0.699006                             0.15272       asa_3.0      0.699006
+4 -0.692357                             0.15272       asa_2.0      0.692357
+3  0.141357                             0.15272         sex_M      0.141357
+6  0.106740                             0.15272       asa_4.0      0.106740
+7  0.021903                             0.15272       asa_5.0      0.021903
+2 -0.008490                             0.15272        height      0.008490
+8  0.007808                             0.15272       asa_6.0      0.007808
+1  0.006667                             0.15272        weight      0.006667
+0 -0.001016                             0.15272           age      0.001016
+
+
+Selected Features Overthreshold:
+   Loadings  Explained Variance for Component 1 Feature Names  Abs Loadings
+5  0.699006                             0.15272       asa_3.0      0.699006
+4 -0.692357                             0.15272       asa_2.0      0.692357
+Feature Group: demographic_columns, Principal Component 2 Summary:
+   Loadings  Explained Variance for Component 2 Feature Names  Abs Loadings
+1  0.657991                            0.130478        weight      0.657991
+0 -0.594166                            0.130478           age      0.594166
+2  0.462038                            0.130478        height      0.462038
+7  0.013976                            0.130478       asa_5.0      0.013976
+8 -0.012397                            0.130478       asa_6.0      0.012397
+6 -0.012215                            0.130478       asa_4.0      0.012215
+3 -0.004491                            0.130478         sex_M      0.004491
+4 -0.003369                            0.130478       asa_2.0      0.003369
+5 -0.002392                            0.130478       asa_3.0      0.002392
+
+
+Selected Features Overthreshold:
+   Loadings  Explained Variance for Component 2 Feature Names  Abs Loadings
+1  0.657991                            0.130478        weight      0.657991
+0 -0.594166                            0.130478           age      0.594166
+2  0.462038                            0.130478        height      0.462038
+
+
+
+
+Feature Group: operation_columns, Principal Component 1 Summary:
+        Loadings  Explained Variance for Component 1     Feature Names  \
+2   6.246038e-01                            0.125143   anesth_duration   
+1   6.200611e-01                            0.125143       or_duration   
+0   4.733597e-01                            0.125143         icu_visit   
+12  2.065596e-02                            0.125143     department_OT   
+17  1.951576e-02                            0.125143        antype_MAC   
+6  -1.344965e-02                            0.125143     department_GS   
+10  8.343644e-03                            0.125143     department_OL   
+19 -7.494029e-03                            0.125143   antype_Regional   
+11  7.418570e-03                            0.125143     department_OS   
+8  -7.200631e-03                            0.125143     department_NS   
+3  -5.601403e-03                            0.125143    department_CTS   
+9  -5.251429e-03                            0.125143     department_OG   
+16 -4.355846e-03                            0.125143     department_UR   
+18  3.808961e-03                            0.125143  antype_Neuraxial   
+5  -2.430066e-03                            0.125143     department_EM   
+15 -2.011303e-03                            0.125143    department_RAD   
+13 -8.645267e-04                            0.125143    department_PED   
+14  7.968313e-04                            0.125143     department_PS   
+7  -6.540398e-05                            0.125143     department_IM   
+4  -6.938894e-18                            0.125143     department_DM   
+
+    Abs Loadings  
+2   6.246038e-01  
+1   6.200611e-01  
+0   4.733597e-01  
+12  2.065596e-02  
+17  1.951576e-02  
+6   1.344965e-02  
+10  8.343644e-03  
+19  7.494029e-03  
+11  7.418570e-03  
+8   7.200631e-03  
+3   5.601403e-03  
+9   5.251429e-03  
+16  4.355846e-03  
+18  3.808961e-03  
+5   2.430066e-03  
+15  2.011303e-03  
+13  8.645267e-04  
+14  7.968313e-04  
+7   6.540398e-05  
+4   6.938894e-18  
+
+
+Selected Features Overthreshold:
+   Loadings  Explained Variance for Component 1    Feature Names  Abs Loadings
+2  0.624604                            0.125143  anesth_duration      0.624604
+1  0.620061                            0.125143      or_duration      0.620061
+0  0.473360                            0.125143        icu_visit      0.473360
+Feature Group: operation_columns, Principal Component 2 Summary:
+        Loadings  Explained Variance for Component 2     Feature Names  \
+12  6.455756e-01                            0.108644     department_OT   
+17  6.406492e-01                            0.108644        antype_MAC   
+18 -2.540142e-01                            0.108644  antype_Neuraxial   
+11 -2.214218e-01                            0.108644     department_OS   
+6  -1.740479e-01                            0.108644     department_GS   
+9  -1.287396e-01                            0.108644     department_OG   
+16 -8.464039e-02                            0.108644     department_UR   
+8  -4.894725e-02                            0.108644     department_NS   
+3  -3.714526e-02                            0.108644    department_CTS   
+19 -2.407503e-02                            0.108644   antype_Regional   
+0  -1.975526e-02                            0.108644         icu_visit   
+1  -1.457165e-02                            0.108644       or_duration   
+2  -1.442673e-02                            0.108644   anesth_duration   
+15 -4.221981e-03                            0.108644    department_RAD   
+7  -4.220462e-03                            0.108644     department_IM   
+10  3.822585e-03                            0.108644     department_OL   
+13 -1.595498e-03                            0.108644    department_PED   
+14  6.965141e-04                            0.108644     department_PS   
+5  -3.759383e-04                            0.108644     department_EM   
+4   4.163336e-17                            0.108644     department_DM   
+
+    Abs Loadings  
+12  6.455756e-01  
+17  6.406492e-01  
+18  2.540142e-01  
+11  2.214218e-01  
+6   1.740479e-01  
+9   1.287396e-01  
+16  8.464039e-02  
+8   4.894725e-02  
+3   3.714526e-02  
+19  2.407503e-02  
+0   1.975526e-02  
+1   1.457165e-02  
+2   1.442673e-02  
+15  4.221981e-03  
+7   4.220462e-03  
+10  3.822585e-03  
+13  1.595498e-03  
+14  6.965141e-04  
+5   3.759383e-04  
+4   4.163336e-17  
+
+
+Selected Features Overthreshold:
+    Loadings  Explained Variance for Component 2     Feature Names  \
+12  0.645576                            0.108644     department_OT   
+17  0.640649                            0.108644        antype_MAC   
+18 -0.254014                            0.108644  antype_Neuraxial   
+11 -0.221422                            0.108644     department_OS   
+
+    Abs Loadings  
+12      0.645576  
+17      0.640649  
+18      0.254014  
+11      0.221422  
+Feature Group: operation_columns, Principal Component 3 Summary:
+        Loadings  Explained Variance for Component 3     Feature Names  \
+18  5.861387e-01                            0.086581  antype_Neuraxial   
+11  5.305020e-01                            0.086581     department_OS   
+6  -4.759117e-01                            0.086581     department_GS   
+9   2.505682e-01                            0.086581     department_OG   
+12  1.678810e-01                            0.086581     department_OT   
+17  1.600027e-01                            0.086581        antype_MAC   
+8  -1.018095e-01                            0.086581     department_NS   
+3  -9.358197e-02                            0.086581    department_CTS   
+10 -8.922904e-02                            0.086581     department_OL   
+19  4.842263e-02                            0.086581   antype_Regional   
+16  3.096268e-02                            0.086581     department_UR   
+14 -2.947656e-02                            0.086581     department_PS   
+15 -1.641619e-02                            0.086581    department_RAD   
+1  -1.209660e-02                            0.086581       or_duration   
+2  -1.195454e-02                            0.086581   anesth_duration   
+7  -7.919886e-03                            0.086581     department_IM   
+0  -6.146186e-03                            0.086581         icu_visit   
+13 -5.426822e-03                            0.086581    department_PED   
+5  -1.478119e-03                            0.086581     department_EM   
+4   1.110223e-16                            0.086581     department_DM   
+
+    Abs Loadings  
+18  5.861387e-01  
+11  5.305020e-01  
+6   4.759117e-01  
+9   2.505682e-01  
+12  1.678810e-01  
+17  1.600027e-01  
+8   1.018095e-01  
+3   9.358197e-02  
+10  8.922904e-02  
+19  4.842263e-02  
+16  3.096268e-02  
+14  2.947656e-02  
+15  1.641619e-02  
+1   1.209660e-02  
+2   1.195454e-02  
+7   7.919886e-03  
+0   6.146186e-03  
+13  5.426822e-03  
+5   1.478119e-03  
+4   1.110223e-16  
+
+
+Selected Features Overthreshold:
+    Loadings  Explained Variance for Component 3     Feature Names  \
+18  0.586139                            0.086581  antype_Neuraxial   
+11  0.530502                            0.086581     department_OS   
+6  -0.475912                            0.086581     department_GS   
+9   0.250568                            0.086581     department_OG   
+
+    Abs Loadings  
+18      0.586139  
+11      0.530502  
+6       0.475912  
+9       0.250568  
+Feature Group: operation_columns, Principal Component 4 Summary:
+    Loadings  Explained Variance for Component 4     Feature Names  \
+6  -0.658795                            0.065508     department_GS   
+10  0.390770                            0.065508     department_OL   
+8   0.370595                            0.065508     department_NS   
+3   0.340930                            0.065508    department_CTS   
+16  0.261221                            0.065508     department_UR   
+11 -0.171787                            0.065508     department_OS   
+18 -0.150890                            0.065508  antype_Neuraxial   
+12 -0.125214                            0.065508     department_OT   
+14  0.107360                            0.065508     department_PS   
+17 -0.090000                            0.065508        antype_MAC   
+15  0.044889                            0.065508    department_RAD   
+0  -0.023418                            0.065508         icu_visit   
+7   0.019933                            0.065508     department_IM   
+19 -0.018235                            0.065508   antype_Regional   
+13  0.016561                            0.065508    department_PED   
+9   0.011932                            0.065508     department_OG   
+1   0.009693                            0.065508       or_duration   
+2   0.007720                            0.065508   anesth_duration   
+5   0.005560                            0.065508     department_EM   
+4  -0.000000                            0.065508     department_DM   
+
+    Abs Loadings  
+6       0.658795  
+10      0.390770  
+8       0.370595  
+3       0.340930  
+16      0.261221  
+11      0.171787  
+18      0.150890  
+12      0.125214  
+14      0.107360  
+17      0.090000  
+15      0.044889  
+0       0.023418  
+7       0.019933  
+19      0.018235  
+13      0.016561  
+9       0.011932  
+1       0.009693  
+2       0.007720  
+5       0.005560  
+4       0.000000  
+
+
+Selected Features Overthreshold:
+    Loadings  Explained Variance for Component 4   Feature Names  Abs Loadings
+6  -0.658795                            0.065508   department_GS      0.658795
+10  0.390770                            0.065508   department_OL      0.390770
+8   0.370595                            0.065508   department_NS      0.370595
+3   0.340930                            0.065508  department_CTS      0.340930
+16  0.261221                            0.065508   department_UR      0.261221
+Feature Group: clinical_columns, Principal Component 1 Summary:
+    Loadings  Explained Variance for Component 1    Feature Names  \
+13  0.505678                            0.099477              ast   
+12  0.498917                            0.099477              alt   
+23  0.398499                            0.099477  total_bilirubin   
+19 -0.266231                            0.099477       lymphocyte   
+24  0.226498                            0.099477              wbc   
+15  0.198458                            0.099477       creatinine   
+11  0.165542                            0.099477              alp   
+16  0.160687                            0.099477          glucose   
+9   0.143932                            0.099477               vt   
+20 -0.134850                            0.099477         platelet   
+21  0.127164                            0.099477        potassium   
+22 -0.115301                            0.099477           sodium   
+18 -0.090505                            0.099477             hco3   
+0  -0.087300                            0.099477          art_mbp   
+5   0.083315                            0.099477              pip   
+3   0.079091                            0.099477              cvp   
+6   0.073107                            0.099477            pmean   
+14 -0.068226                            0.099477         chloride   
+1  -0.066103                            0.099477          art_sbp   
+4   0.055774                            0.099477               hr   
+2  -0.053355                            0.099477               bt   
+10 -0.051186                            0.099477     chart_time_y   
+17  0.030764                            0.099477               hb   
+7   0.022621                            0.099477               rr   
+8  -0.000743                            0.099477             spo2   
+
+    Abs Loadings  
+13      0.505678  
+12      0.498917  
+23      0.398499  
+19      0.266231  
+24      0.226498  
+15      0.198458  
+11      0.165542  
+16      0.160687  
+9       0.143932  
+20      0.134850  
+21      0.127164  
+22      0.115301  
+18      0.090505  
+0       0.087300  
+5       0.083315  
+3       0.079091  
+6       0.073107  
+14      0.068226  
+1       0.066103  
+4       0.055774  
+2       0.053355  
+10      0.051186  
+17      0.030764  
+7       0.022621  
+8       0.000743  
+
+
+Selected Features Overthreshold:
+    Loadings  Explained Variance for Component 1    Feature Names  \
+13  0.505678                            0.099477              ast   
+12  0.498917                            0.099477              alt   
+23  0.398499                            0.099477  total_bilirubin   
+19 -0.266231                            0.099477       lymphocyte   
+24  0.226498                            0.099477              wbc   
+
+    Abs Loadings  
+13      0.505678  
+12      0.498917  
+23      0.398499  
+19      0.266231  
+24      0.226498  
+Feature Group: clinical_columns, Principal Component 2 Summary:
+    Loadings  Explained Variance for Component 2    Feature Names  \
+1   0.444483                            0.082755          art_sbp   
+6  -0.406967                            0.082755            pmean   
+0   0.406521                            0.082755          art_mbp   
+9  -0.392193                            0.082755               vt   
+5  -0.323851                            0.082755              pip   
+7   0.210128                            0.082755               rr   
+4   0.207569                            0.082755               hr   
+2  -0.185739                            0.082755               bt   
+14 -0.154911                            0.082755         chloride   
+11  0.118075                            0.082755              alp   
+22 -0.114620                            0.082755           sodium   
+16  0.092140                            0.082755          glucose   
+18  0.077804                            0.082755             hco3   
+24  0.067684                            0.082755              wbc   
+12  0.062398                            0.082755              alt   
+17  0.060888                            0.082755               hb   
+13  0.056159                            0.082755              ast   
+3  -0.049631                            0.082755              cvp   
+15  0.048407                            0.082755       creatinine   
+21  0.048167                            0.082755        potassium   
+20  0.033132                            0.082755         platelet   
+19 -0.026403                            0.082755       lymphocyte   
+23  0.025998                            0.082755  total_bilirubin   
+8  -0.018674                            0.082755             spo2   
+10  0.014790                            0.082755     chart_time_y   
+
+    Abs Loadings  
+1       0.444483  
+6       0.406967  
+0       0.406521  
+9       0.392193  
+5       0.323851  
+7       0.210128  
+4       0.207569  
+2       0.185739  
+14      0.154911  
+11      0.118075  
+22      0.114620  
+16      0.092140  
+18      0.077804  
+24      0.067684  
+12      0.062398  
+17      0.060888  
+13      0.056159  
+3       0.049631  
+15      0.048407  
+21      0.048167  
+20      0.033132  
+19      0.026403  
+23      0.025998  
+8       0.018674  
+10      0.014790  
+
+
+Selected Features Overthreshold:
+   Loadings  Explained Variance for Component 2 Feature Names  Abs Loadings
+1  0.444483                            0.082755       art_sbp      0.444483
+6 -0.406967                            0.082755         pmean      0.406967
+0  0.406521                            0.082755       art_mbp      0.406521
+9 -0.392193                            0.082755            vt      0.392193
+5 -0.323851                            0.082755           pip      0.323851
+7  0.210128                            0.082755            rr      0.210128
+4  0.207569                            0.082755            hr      0.207569
+Feature Group: clinical_columns, Principal Component 3 Summary:
+    Loadings  Explained Variance for Component 3    Feature Names  \
+14  0.435435                            0.070459         chloride   
+17 -0.332213                            0.070459               hb   
+6  -0.327407                            0.070459            pmean   
+5  -0.326696                            0.070459              pip   
+9  -0.275249                            0.070459               vt   
+22  0.236823                            0.070459           sodium   
+1  -0.232392                            0.070459          art_sbp   
+18 -0.221778                            0.070459             hco3   
+0  -0.221085                            0.070459          art_mbp   
+20 -0.203786                            0.070459         platelet   
+21 -0.181129                            0.070459        potassium   
+15 -0.177237                            0.070459       creatinine   
+3   0.149245                            0.070459              cvp   
+13  0.147822                            0.070459              ast   
+11 -0.129448                            0.070459              alp   
+19 -0.114616                            0.070459       lymphocyte   
+12  0.091943                            0.070459              alt   
+24 -0.069698                            0.070459              wbc   
+10 -0.059580                            0.070459     chart_time_y   
+2  -0.043490                            0.070459               bt   
+16 -0.037096                            0.070459          glucose   
+4   0.031413                            0.070459               hr   
+8  -0.030978                            0.070459             spo2   
+23  0.017430                            0.070459  total_bilirubin   
+7   0.006308                            0.070459               rr   
+
+    Abs Loadings  
+14      0.435435  
+17      0.332213  
+6       0.327407  
+5       0.326696  
+9       0.275249  
+22      0.236823  
+1       0.232392  
+18      0.221778  
+0       0.221085  
+20      0.203786  
+21      0.181129  
+15      0.177237  
+3       0.149245  
+13      0.147822  
+11      0.129448  
+19      0.114616  
+12      0.091943  
+24      0.069698  
+10      0.059580  
+2       0.043490  
+16      0.037096  
+4       0.031413  
+8       0.030978  
+23      0.017430  
+7       0.006308  
+
+
+Selected Features Overthreshold:
+    Loadings  Explained Variance for Component 3 Feature Names  Abs Loadings
+14  0.435435                            0.070459      chloride      0.435435
+17 -0.332213                            0.070459            hb      0.332213
+6  -0.327407                            0.070459         pmean      0.327407
+5  -0.326696                            0.070459           pip      0.326696
+9  -0.275249                            0.070459            vt      0.275249
+22  0.236823                            0.070459        sodium      0.236823
+1  -0.232392                            0.070459       art_sbp      0.232392
+18 -0.221778                            0.070459          hco3      0.221778
+0  -0.221085                            0.070459       art_mbp      0.221085
+20 -0.203786                            0.070459      platelet      0.203786
+Feature Group: clinical_columns, Principal Component 4 Summary:
+    Loadings  Explained Variance for Component 4    Feature Names  \
+24 -0.430390                            0.060834              wbc   
+19  0.402985                            0.060834       lymphocyte   
+0   0.300133                            0.060834          art_mbp   
+1   0.280368                            0.060834          art_sbp   
+22  0.278033                            0.060834           sodium   
+13  0.252317                            0.060834              ast   
+14  0.251860                            0.060834         chloride   
+12  0.247489                            0.060834              alt   
+20 -0.211266                            0.060834         platelet   
+15 -0.168078                            0.060834       creatinine   
+5   0.159299                            0.060834              pip   
+3  -0.133662                            0.060834              cvp   
+6   0.127861                            0.060834            pmean   
+4  -0.126122                            0.060834               hr   
+7  -0.120718                            0.060834               rr   
+23  0.120470                            0.060834  total_bilirubin   
+21 -0.116745                            0.060834        potassium   
+10  0.094494                            0.060834     chart_time_y   
+11  0.066543                            0.060834              alp   
+9   0.065556                            0.060834               vt   
+17  0.063122                            0.060834               hb   
+18  0.058165                            0.060834             hco3   
+2  -0.039180                            0.060834               bt   
+16  0.016958                            0.060834          glucose   
+8   0.009480                            0.060834             spo2   
+
+    Abs Loadings  
+24      0.430390  
+19      0.402985  
+0       0.300133  
+1       0.280368  
+22      0.278033  
+13      0.252317  
+14      0.251860  
+12      0.247489  
+20      0.211266  
+15      0.168078  
+5       0.159299  
+3       0.133662  
+6       0.127861  
+4       0.126122  
+7       0.120718  
+23      0.120470  
+21      0.116745  
+10      0.094494  
+11      0.066543  
+9       0.065556  
+17      0.063122  
+18      0.058165  
+2       0.039180  
+16      0.016958  
+8       0.009480  
+
+
+Selected Features Overthreshold:
+    Loadings  Explained Variance for Component 4 Feature Names  Abs Loadings
+24 -0.430390                            0.060834           wbc      0.430390
+19  0.402985                            0.060834    lymphocyte      0.402985
+0   0.300133                            0.060834       art_mbp      0.300133
+1   0.280368                            0.060834       art_sbp      0.280368
+22  0.278033                            0.060834        sodium      0.278033
+13  0.252317                            0.060834           ast      0.252317
+14  0.251860                            0.060834      chloride      0.251860
+12  0.247489                            0.060834           alt      0.247489
+20 -0.211266                            0.060834      platelet      0.211266
+Feature Group: procedure_columns, Principal Component 1 Summary:
+    Loadings  Explained Variance for Component 1    Feature Names  \
+30 -0.478604                            0.009085  category_id_08D   
+65  0.347245                            0.009085  category_id_0HB   
+35 -0.228362                            0.009085  category_id_09Q   
+31  0.172658                            0.009085  category_id_08R   
+5   0.167379                            0.009085  category_id_00X   
+..       ...                                 ...              ...   
+38  0.006525                            0.009085  category_id_0BB   
+81  0.006421                            0.009085  category_id_0PP   
+6  -0.006268                            0.009085  category_id_021   
+70  0.005321                            0.009085  category_id_0J8   
+43 -0.004646                            0.009085  category_id_0BT   
+
+    Abs Loadings  
+30      0.478604  
+65      0.347245  
+35      0.228362  
+31      0.172658  
+5       0.167379  
+..           ...  
+38      0.006525  
+81      0.006421  
+6       0.006268  
+70      0.005321  
+43      0.004646  
+
+[114 rows x 4 columns]
+
+
+Selected Features Overthreshold:
+    Loadings  Explained Variance for Component 1    Feature Names  \
+30 -0.478604                            0.009085  category_id_08D   
+65  0.347245                            0.009085  category_id_0HB   
+35 -0.228362                            0.009085  category_id_09Q   
+
+    Abs Loadings  
+30      0.478604  
+65      0.347245  
+35      0.228362  
+Feature Group: procedure_columns, Principal Component 2 Summary:
+    Loadings  Explained Variance for Component 2    Feature Names  \
+65 -0.330158                             0.00901  category_id_0HB   
+31  0.310755                             0.00901  category_id_08R   
+49 -0.283492                             0.00901  category_id_0DB   
+86  0.205768                             0.00901  category_id_0QS   
+25  0.183468                             0.00901  category_id_04C   
+..       ...                                 ...              ...   
+14  0.005267                             0.00901  category_id_02R   
+74  0.004251                             0.00901  category_id_0MB   
+85 -0.000743                             0.00901  category_id_0QQ   
+51 -0.000398                             0.00901  category_id_0DJ   
+45  0.000008                             0.00901  category_id_0BY   
+
+    Abs Loadings  
+65      0.330158  
+31      0.310755  
+49      0.283492  
+86      0.205768  
+25      0.183468  
+..           ...  
+14      0.005267  
+74      0.004251  
+85      0.000743  
+51      0.000398  
+45      0.000008  
+
+[114 rows x 4 columns]
+
+
+Selected Features Overthreshold:
+    Loadings  Explained Variance for Component 2    Feature Names  \
+65 -0.330158                             0.00901  category_id_0HB   
+31  0.310755                             0.00901  category_id_08R   
+49 -0.283492                             0.00901  category_id_0DB   
+86  0.205768                             0.00901  category_id_0QS   
+
+    Abs Loadings  
+65      0.330158  
+31      0.310755  
+49      0.283492  
+86      0.205768  
+Feature Group: procedure_columns, Principal Component 3 Summary:
+     Loadings  Explained Variance for Component 3    Feature Names  \
+54  -0.264875                            0.008948  category_id_0DT   
+30   0.259516                            0.008948  category_id_08D   
+107  0.201574                            0.008948  category_id_0W3   
+84  -0.187507                            0.008948  category_id_0QH   
+89  -0.181281                            0.008948  category_id_0RG   
+..        ...                                 ...              ...   
+11  -0.003139                            0.008948  category_id_02J   
+110  0.002998                            0.008948  category_id_0WJ   
+55  -0.002039                            0.008948  category_id_0DV   
+27   0.001342                            0.008948  category_id_05H   
+91  -0.000104                            0.008948  category_id_0RP   
+
+     Abs Loadings  
+54       0.264875  
+30       0.259516  
+107      0.201574  
+84       0.187507  
+89       0.181281  
+..            ...  
+11       0.003139  
+110      0.002998  
+55       0.002039  
+27       0.001342  
+91       0.000104  
+
+[114 rows x 4 columns]
+
+
+Selected Features Overthreshold:
+     Loadings  Explained Variance for Component 3    Feature Names  \
+54  -0.264875                            0.008948  category_id_0DT   
+30   0.259516                            0.008948  category_id_08D   
+107  0.201574                            0.008948  category_id_0W3   
+
+     Abs Loadings  
+54       0.264875  
+30       0.259516  
+107      0.201574  
+Feature Group: procedure_columns, Principal Component 4 Summary:
+     Loadings  Explained Variance for Component 4    Feature Names  \
+28   0.289976                            0.008897  category_id_07L   
+59  -0.250004                            0.008897  category_id_0FT   
+103 -0.219915                            0.008897  category_id_0VB   
+35   0.216467                            0.008897  category_id_09Q   
+34   0.208192                            0.008897  category_id_09P   
+..        ...                                 ...              ...   
+36   0.006830                            0.008897  category_id_09R   
+88  -0.006210                            0.008897  category_id_0RB   
+84  -0.005340                            0.008897  category_id_0QH   
+21  -0.005286                            0.008897  category_id_03L   
+40  -0.004369                            0.008897  category_id_0BJ   
+
+     Abs Loadings  
+28       0.289976  
+59       0.250004  
+103      0.219915  
+35       0.216467  
+34       0.208192  
+..            ...  
+36       0.006830  
+88       0.006210  
+84       0.005340  
+21       0.005286  
+40       0.004369  
+
+[114 rows x 4 columns]
+
+
+Selected Features Overthreshold:
+     Loadings  Explained Variance for Component 4    Feature Names  \
+28   0.289976                            0.008897  category_id_07L   
+59  -0.250004                            0.008897  category_id_0FT   
+103 -0.219915                            0.008897  category_id_0VB   
+35   0.216467                            0.008897  category_id_09Q   
+34   0.208192                            0.008897  category_id_09P   
+
+     Abs Loadings  
+28       0.289976  
+59       0.250004  
+103      0.219915  
+35       0.216467  
+34       0.208192  
+Cumulative Explained Variance for All Components:
+[0.15272011 0.28319858 0.40834182 0.51698551 0.60356671 0.66907504
+ 0.76855228 0.85130688 0.92176622 0.98260065 0.99168534 1.00069497
+ 1.00964273 1.01853991]
