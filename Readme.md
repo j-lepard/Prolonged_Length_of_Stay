@@ -15,9 +15,11 @@ The INSPIRE dataset is a publicly available research dataset in perioperative me
  * [ ] EDA
  * [ ] Pre-processing
  * [ ] Models
-   * [ ] baseline LR 
+   * [ ] Linear Regression
+   * [ ] Random Forest
+   * [ ] Extra Trees
    * [ ] XGBoost
-   * [ ] neural network
+   * [ ] CatBoost
  * [ ] Deployment
    * [ ] Azure..
   
@@ -152,7 +154,36 @@ The features selected for future analysis and inclusion in the modelling are pro
 
 ## Evaluation
 
-![Alt text](_images/Model_baselines.png)
+### Baseline Models (no hyperparameter tuning)  
+
+> Linear Regression  
+> ![Alt text](_images/baselines/LinearRegression_baseline_1category.png)
+
+> Random Forest  
+> ![Alt text](_images/baselines/RandomForest_baseline_1category.png)
+
+> Extra Trees
+> ![Alt text](_images/baselines/ExtraTrees_baseline_1category.png)
+
+> XGBoost
+> ![Alt text](_images/baselines/XGB_baseline_1category.png)
+
+> CatBoost  
+> CatBoost is designed specifically with a focus on categorical feature handling. It uses a specialized method for encoding categorical variables called "Ordered Target Encoding." CatBoost automatically detects and encodes categorical features without manual intervention (ie 1-hot encoding). It also includes techniques like "Ordered Boosting" and "Bayesian Regularization" to improve performance and reduce overfitting.
+> 
+> ![Alt text](_images/baselines/CatBoost_baseline_1category.png)
+
+### Hyperparameter Tuning
+
+Catboost ensemble model showed the most promise and was selected for optimization and hyperparameter tuning. A Grid Search method (as opposed to Random Search) was used to tune the algorithm. 
+
+For following grid paramaters were evaluated: 
+> ![Alt text](_images/grid_params_CatBoost.png)
+
+**Result of Grid Search yielded:**
+
+> ![Alt text](_images/optimized/CatBoostRegressor_tuned_1category.png)
+
 
 
 # Deployment
