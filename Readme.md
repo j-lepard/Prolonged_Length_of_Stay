@@ -44,6 +44,25 @@ Postgres Queries:
  * ADD_VITALS.sql - creates the 'vitals_in_hospital_filter' table which contains the vitals related to each operation_id. 
  * clean_ICD_tables - used to join ICD10 descriptions to operations table. 
 
+### Intermediate Data File Summary
+
+The following csv files are generated through the data import, scoping, and feature engineering steps prior to Modelling. 
+
+|Step |File Name|Description|
+|-----|--------------|--------------|
+|1a.  |operations_pcd|	Raw Operations Table. Not joined to Labs or Vitals. |
+|1b.  |vitals_in_hospital_filter|	Raw Vitals Table - filtered for those vitals that are clsoest to the OR END time|
+|1c.  |labs_in_hospital_filter|	Raw LAbs Table - filtered for those vitals that are clsoest to the OR END time|
+|2. |operations_fulldata|	Operations Table JOINED to Labs and Vitals (contains duplicates due to absence of unique key|
+|3.| operations_fulldata_nodup|	Operations Table JOINED to Labs and Vitals (duplicates removed on 'op_id', 'subject_id', 'hadm_id'. Retain first occurrence|
+| || |
+|4a.|category_VOL|	Top X surgery categories by Volume as specificed in variable. |
+|4b. |category_STD|	Top X surgery categories by Standard Deviation in LOS|
+||||	
+|5. |operations_inscope_CATEGORIES|	Finalized list - PRIOR to pre-proccessing and feature selection. |
+|6.| **operatons_imputed_CLEAN** | File has engineered features: LOS, Prolonged LOS (y/n),OR duration, Anesthesia duration, ICU visit (y/n)|
+
+  
 
   
 # Exploratory Data Evaluation
