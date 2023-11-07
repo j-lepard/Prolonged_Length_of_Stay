@@ -61,6 +61,7 @@ The following csv files are generated through the data import, scoping, and feat
 ||||	
 |5. |operations_inscope_CATEGORIES|	Finalized list - PRIOR to pre-proccessing and feature selection. |
 |6.| **operatons_imputed_CLEAN** | File has engineered features: LOS, Prolonged LOS (y/n),OR duration, Anesthesia duration, ICU visit (y/n)|
+|7.| operations_1hot_encoded | Encoded categorical features for use within PCA (feature reduction)|
 
   
 
