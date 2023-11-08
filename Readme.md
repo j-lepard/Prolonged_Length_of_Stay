@@ -12,7 +12,7 @@ The INSPIRE dataset is a publicly available research dataset in perioperative me
 
 # Methods
  * [ ] Database preparation
- * [ ] EDA
+ * [ ] Exploratory Data Analysis (EDA)
  * [ ] Pre-processing
  * [ ] Models
    * [ ] Linear Regression
@@ -21,10 +21,8 @@ The INSPIRE dataset is a publicly available research dataset in perioperative me
    * [ ] XGBoost
    * [ ] CatBoost
  * [ ] Deployment
-   * [ ] Azure..
   
 # Database preparation
-
 
 The primary data set contains three main tables of interest (operation, vitals, and lab) Record counts can be seen in the below schema. Associated tables were joined to include descrptions for the the main tables to include human-readable labels. By way of example, the prodecure (surgery) names in Operations table were provided as the ICD-10 Procedure Coding Standard. 
 
@@ -37,7 +35,7 @@ The dataframe used for exploratory data analysis was comprised from a series of 
 5. Labs timing: timing of lab tests followed a similar approach to the vitals. It should be noted that lab results are collected with reduced frequency than vitals. A 'backstop' should be considered in the event that 'nearest' lab results are several days after the procedure. 
 6. Labs scope: In the interests of maintaining performance, the lab test scope was contrained to ~15 tests. These tests are the most common and and therefore will lead to the lowest chance of null values.   
 
-Postgres Queries: 
+Postgres Queries:  
  Queries used in the preparation of the data can be found in the [query](_src\query) folder.
  Files include: 
  * ADD_LABS.sql - creates the 'labs_in_hospital_filter' table containing list of lab results related to subjects. 
@@ -46,7 +44,7 @@ Postgres Queries:
 
 ### Intermediate Data File Summary
 
-The following csv files are generated through the data import, scoping, and feature engineering steps prior to Modelling. 
+The following csv files are generated through the data import, scoping, and feature engineering steps prior to Modelling. These maybe found in the [_data](_data) folder
 
 |Step |File Name|Description|
 |-----|--------------|--------------|
@@ -64,20 +62,30 @@ The following csv files are generated through the data import, scoping, and feat
 |7.| operations_1hot_encoded | Encoded categorical features for use within PCA (feature reduction)|
 
   
+  
+    
 
   
 # Exploratory Data Evaluation
 
-## Understanding the Operation
+## Understanding the 'Surpgical suite Operation'
 
 ### Objective
-1. Confirm Scope of Model (which surgeries)
-2. Confirm the definition of PLOS by surgery (when does it become 'prolonged')
+The objective of the first component of the project is to review the data and gain an understanding of the patient and provider flow. Given the complexity and number of clinical and non-clinical features in the dataset, a visualization dashboard was created to support analysis. The Power BI dashboard can also be used post-deployment as a potential interface for data ingestion and/or a performance dashboard. 
 
-Lines of inquiry: 
-1. Which are most common surgeries (Category/specific) 
+**Lines of inquiry:**
+
+1. What are most common surgeries (category/specific)?
 2. What is the distribution of surgery (OR) durations for each surgery category? 
-3. What is the time distribution 
+3. What is the time distribution for patient populations, surgery type, etc?
+4. Does a visit to the ICU seem to have any correlation to a prolonged LOS? 
+5. Is there a correlation between LOS and patient age, length of time under anesthesia, or surgical duration?  
+
+**Power BI Dashboard:**
+
+![Power BI page 1](_images/PowerBI_page1.png)
+
+![Power BI page 2](_images/PowerBI_page2.png)
 
 ## Understanding the Features
 
@@ -204,8 +212,6 @@ For following grid paramaters were evaluated:
 
 > ![Alt text](_images/optimized/CatBoostRegressor_tuned_1category.png)
 
-
-
 # Deployment
 
 # Discussion
@@ -213,6 +219,11 @@ For following grid paramaters were evaluated:
 # Conclusion
 
 # Future Considerations
+
+* [ ] Introduce deep learning models (additional compute required)
+* [ ] Create an 'intermediate' categorization - currently either LOS (very specific) and Prolonged (binary). Create bins to represent 'degree' of PLOS
+* [ ] Broaden data set - currently constrained to INSPIRE. Include other data sets such as MIMIC, PMSI,HiRID,AUMC
+
 
 ### Models
 
