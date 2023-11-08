@@ -194,7 +194,8 @@ The most impactful 47 features of the original, encoded data set have been ident
 
 The features selected for future analysis and inclusion in the modelling are provide below with a description: 
 
-><center><img src="_images/PCA_FINAL_features_selected.svg" alt="" style="height: auto; width:50%;"/> </center>
+><center><img src="_images/PCA_FINAL_features_selected.svg" alt="" style="height: auto; width:50%;"/> </center>  
+
 <br>
 <br>
 <br>
