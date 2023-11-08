@@ -344,4 +344,4 @@ The regression model was able to predict a LOS, but with admitedly underwhelming
 * [ ] Introduce deep learning models (additional compute required)
 * [ ] Create an 'intermediate' categorization - currently either LOS (very specific) and Prolonged (binary). Create bins to represent 'degree' of PLOS
 * [ ] Broaden data set - currently constrained to INSPIRE. Include other data sets such as MIMIC, PMSI,HiRID,AUMC
-
+* [ ] UI/UX, deployment, and interface with EMR considerations
