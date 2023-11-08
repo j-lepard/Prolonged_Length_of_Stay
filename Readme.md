@@ -42,7 +42,9 @@ Postgres Queries:
  * ADD_VITALS.sql - creates the 'vitals_in_hospital_filter' table which contains the vitals related to each operation_id. 
  * clean_ICD_tables - used to join ICD10 descriptions to operations table. 
 
-### Intermediate Data File Summary
+## Intermediate Data File Summary
+
+> Notebook: [0.Data_import](_src\0.Data_import.ipynb)
 
 The following csv files are generated through the data import, scoping, and feature engineering steps prior to Modelling. These maybe found in the [_data](_data) folder
 
@@ -61,16 +63,18 @@ The following csv files are generated through the data import, scoping, and feat
 |6.| **operatons_imputed_CLEAN** | File has engineered features: LOS, Prolonged LOS (y/n),OR duration, Anesthesia duration, ICU visit (y/n)|
 |7.| operations_1hot_encoded | Encoded categorical features for use within PCA (feature reduction)|
 
-  
-  
-    
+</br>
+</br>
 
   
-# Exploratory Data Evaluation
+# Exploratory Data Analysis
+</br>
 
-## Understanding the 'Surpgical suite Operation'
+## Understanding the 'Surgical suite Operation'
 
-### Objective
+> Notebook: [01.EDA_1_Volume](_src\01.EDA_1_Volume.ipynb)  
+> Notebook: [02.EDA_2_LOS](_src\02.EDA_2_LOS.ipynb)
+
 The objective of the first component of the project is to review the data and gain an understanding of the patient and provider flow. Given the complexity and number of clinical and non-clinical features in the dataset, a visualization dashboard was created to support analysis. The Power BI dashboard can also be used post-deployment as a potential interface for data ingestion and/or a performance dashboard. 
 
 **Lines of inquiry:**
@@ -80,6 +84,7 @@ The objective of the first component of the project is to review the data and ga
 3. What is the time distribution for patient populations, surgery type, etc?
 4. Does a visit to the ICU seem to have any correlation to a prolonged LOS? 
 5. Is there a correlation between LOS and patient age, length of time under anesthesia, or surgical duration?  
+</br>
 
 **Power BI Dashboard:**
 
@@ -89,34 +94,62 @@ The objective of the first component of the project is to review the data and ga
 
 ## Understanding the Features
 
->**Vitals** - Drop features with high nulls  
-![Alt text](_images/VITALS_nulls_toDrop.png)
+One of the first tasks in reviewing features is to identify features with a significant portion of null values. There are predominantly two alternatives when nulls are found: 
+
+1) Drop the feature if the null count is 'significant'
+2) Impute the missing values if the null count is 'acceptable'
+
+The Vitals table and Lab info table contained serveal features with a large number of nulls. These are identified below and subsequently dropped from data frame. 
+
+|Vitals Table | Lab Result Table|
+|-------|----------|
+|<center><img src="_images/VITALS_nulls_toDrop.png" alt="_images/VITALS_nulls_toDrop.png" style="height: auto; width:50%;"/>|<center><img src="_images/Labs_toDrop.png" alt="_images/Labs_toDrop.png" style="height: auto; width:50%;"/>|
+ 
+</br>
+</br>
 
 
-> **Labs** - Drop features with high nulls  
-> ![Alt text](_images/Labs_toDrop.png)  
-> 
-# Pre-processing
+
+# Pre-processing and Feature Engineering
+
+> Notebook: [04.EDA_4_outliers_impute](_src\04.EDA_4_outliers_impute.ipynb)
+
+The original data set contained de-identified timestamps at various points in their care journey. In accordance with best practice, these times were normalized against the patient's admission time to the hospital.Several features were calculated using these time stamps. 
+
 ### Operations
-* [x] create flag (0/1) if person went to ICU post op
-* [x] flag if the subject is an outlier. 
 
-### Features: 
-* [x] set threshold for drop vs impute clinical features (ex. bp)
-* [x] impute means for NaN (grouped by ASA, sex, and Age)
+Time stamps were used to calculate (engineer):
+* Length of Stay (discharge time - OR end time)
+* Operation duration (or_end - or_start)
+* Anesthesia duration (an_end - an_start)
+* Flag (0/1) if subject went to ICU post op (icu_in != 0)
+* Flag (0/1) if the LOS for a subject was an outlier.
+
+### Impute Features
+
+In working dataset, there instances (features) where there some null values that required 'filling' (imputing). Fortunately, most of these null values were clinical results (lab results or vitals), not operational measures or Length of Stay.
+
+An effort was taken the group the subjects first by age, sex and ASA, then immpute the necessary values (average / mode). By way of example, the average white blood cell count (wbc) for 50 year old, Males, of ASA 2 wasq used to impute the missing value for sujects meeting the same grouping. This process was repeated for all other missing values.   
 
 ### Correlelation
-* [ ] review correlations between procedures and LOS
-* [ ] review correlation between labs and LOS
-* [ ] heamaps
+
+Linear regression was initiall pusued for the modelling. Accordingly, correlation coefficients and a heatmap was created to visualize the relationship. The heatmap is presented in the PowerBI dashboard and below. 
+
+
+<center><img src="_images/regression_heatmap.png" alt="_images/regression_heatmap.png" style="height: auto; width:50%;"/></center>  
 
 ## Principle Component Analysis
+
+>Notebook: [05.PCA](_src\05.PCA.ipynb)
+
+`NOTE: PCA was performed in the intial project iteration, but later excluded from final models`  
+
 Following categorical encoding (one-hot), there were >160 features within the dataset. The majority of the features were a result of encoding the surgery type and the clinicial (vitals/labs)features. 
 
 A single PCA would not be appropriate to reduce the features. Elected to group features into 4 catergories and identify optimatl principle components then most influential features within. 
 
 Feature categories: 
-* Dempographic - height, weight, ASA
+* Demographic - height, weight, ASA
 * Operation - logisitics of the operation iteself
 * Procedure - the type of operations by PCD category (heart, ears, feet)
 * Clinical - vital signs and laboratory results taken as proximal to the end of operation time stamp. 
@@ -143,27 +176,28 @@ Feature categories:
 
 Demographics: 
 
-> ![Alt text](_images/PCA_Demo_features_selected.svg)
+> <center><img src="_images/PCA_Demo_features_selected.svg" alt="" style="height: auto; width:50%;"/>  </center>
   
 Operations: 
-> ![Alt text](<_images/PCA_ Operation_features_selected.svg>)  
-
+> <center><img src="_images/PCA_ Operation_features_selected.svg" alt="" style="height: auto; width:50%;"/> </center>
 
 Procedure:   
+><center> <img src="_images/PCA_Procedure_features_selected.svg" alt="" style="height: auto; width:50%;"/> </center>
 
-> ![Alt text](_images/PCA_Procedure_features_selected.svg)  
 
 Clinicial: 
+><center><img src="_images/PCA_Clinical_features_selected.svg" alt="" style="height: auto; width:50%;"/> </center>
 
-> ![Alt text](_images/PCA_Clinical_features_selected.svg)
-
-Impact of PCA on Feature Selection: 
+### Impact of PCA on Feature Selection:   
 
 The most impactful 47 features of the original, encoded data set have been identified and the four-phased Principle Component Analysis. The original data set contained 170 features. These have now been reduced to 47. 
 
 The features selected for future analysis and inclusion in the modelling are provide below with a description: 
 
-> ![Alt text](_images/PCA_FINAL_features_selected.svg)
+><center><img src="_images/PCA_FINAL_features_selected.svg" alt="" style="height: auto; width:50%;"/> </center>
+<br>
+<br>
+<br>
 
 # Machine Learning Models
 
