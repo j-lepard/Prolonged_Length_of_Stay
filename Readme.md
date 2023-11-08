@@ -268,24 +268,76 @@ The CatBoost regression model yieled an RMSE of 0.4375. The model's performance 
 ><center><img src="_images\regression_residuals.png" alt="" style="height:auto; width:40%;"/> </center>  
   
 
->Regression Acutal vs Predicted:   
+>Regression Actual vs Predicted:   
 ><center><img src="_images\regression_actual_vs_pred.png" alt="" style="height:auto; width:40%;"/> </center>
 
->Regression Resitual Histogram:   
+>Regression Residual Histogram:   
 ><center><img src="_images\regression_residuals_histo.png" alt="" style="height:auto; width:40%;"/> </center>
 
 
-## Regression Models
+## Categorization Models
+
+Categorization models used in the proejct included the following, and were initially evaluated using Accuracy. 
+- Logistic Regression
+- Random Forest
+- ExtraTrees
+- XGBoost
+- CatBoost (meow!)
+
+
 ### Baseline Evaluation
-### Hyperparameter Tuning
-### Evaluation of Optimized Regression Model
+
+|Model|Accuracy |  
+|-----|-----|
+|LogisticRegression| 0.823|
+|RandomForestClassifier|0.830|
+|ExtraTreesClassifier|0.830|
+|XGBClassifier|0.832|
+
+### Confusion Matrix & ROC/AUC Baseline (Logistic Regression)
+|Confusion Matrix | ROC|
+|-----------------|-----|
+|<img src="_images\logregress_confusion.png" alt="" style="height:50%; width:auto;"/> |<center><img src="_images\logregress_ROC.png" alt="" style="height:50%; width:auto;"/>|
+
+### Hyperparameter Tuning (CatBoost)
+
+bestTest = 0.3349154585
+bestIteration = 65
+Shrink model to first 66 iterations.
+Accuracy base model: 0.8468930694681978  
 
 
+### Evaluation of Optimized Regression Model (CatBoost)
+|Confusion Matrix | ROC|
+|-----------------|-----|
+|<img src="_images\cat_confusion_optimize.png" alt="" style="height:50%; width:auto;"/> |<center><img src="_images\catboost_ROC_opt.png" alt="" style="height:50%; width:auto;"/>|
+
+Summary of Models:
+|Model_Name|	Sensitivity	|Specificity	|Accuracy|
+|----------|--------------|-------------|--------|
+|Logistic Regression|	0.649092	|0.928775|	0.82|
+|CatBoostClassifier	|0.732444	|0.912169	|0.85|
+|CatBoostClassifier-Optimized|	0.724130|	0.919694	|0.85|
 
 # Deployment
 
+>Notebook: [08.Deployment](_src\08.DeploymentTesting.ipynb)
+
+The two CatBoost models have been prepared for deployment using Pickle. Model export, import and uploading of new data were demonstrated to successfully. Finally, an output dataframe with the model predictions is saved as .csv 
+
+A sample output of two LOS predictions is shown below: 
+
+|category_id	|age	|sex	|weight|	Predicted LOS (days)	|Predicted PLOS|
+|-------------|------|----|------|-------------------------|-------------|
+|	0GT	|90	|F	|80	|3.228563|	0
+|	0GT	|60	|F	|50|	1.898183	|0
+
 # Conclusion
 
+The ability to predict length of stay and/or identify subjects at risk of prolonged LOS immediately following a surgical procedure has significatn operational and patient care implications. The models in this project have shown a reliable model is within the realm of "possible", but with more validation work required. 
+
+The regression model was able to predict a LOS, but with admitedly underwhelming metrics (R2 ~0.5). The categorization model demonstrated acceptable metrics (Specificiy and Sensitivity of 0.72 and 0.91 respectively). That said, a subject with 'dummy' information that by all rational accounts should have seen an extended LOS, was not predicted as such. In that example: the patient was 95 years old, a resting hear rate of 20, in the OR for 300min, undergoing a heart-related procedure and had a visit to ICU... was not predicted to have a PLOS. Perhaps this is an example of where what makes 'sense' is proven incorrect by science.
+ 
 
 # Future Considerations
 
@@ -293,13 +345,3 @@ The CatBoost regression model yieled an RMSE of 0.4375. The model's performance 
 * [ ] Create an 'intermediate' categorization - currently either LOS (very specific) and Prolonged (binary). Create bins to represent 'degree' of PLOS
 * [ ] Broaden data set - currently constrained to INSPIRE. Include other data sets such as MIMIC, PMSI,HiRID,AUMC
 
-
-### Models
-
-LightGBM:
-
-LightGBM provides support for categorical features and handles them efficiently. It uses techniques like "Histogram-based Learning" and "Gradient-based One-Side Sampling (GOSS)" to process categorical features without the need for one-hot encoding. This means that you can use LightGBM directly with datasets that contain categorical variables, and it will handle them seamlessly. LightGBM also allows you to specify which columns are categorical, making it suitable for mixed data types.
-
-CatBoost:
-
-CatBoost is designed specifically with a focus on categorical feature handling. It uses a specialized method for encoding categorical variables called "Ordered Target Encoding." CatBoost automatically detects and encodes categorical features without manual intervention. It also includes techniques like "Ordered Boosting" and "Bayesian Regularization" to improve performance and reduce overfitting.
