@@ -1,3 +1,7 @@
+# Predicting Post-Operative Length of Stay - proof of concept
+<br>
+
+
 # Overview
 
 Prolonged Hospital Length of Stay (PLOS) is an indicator of deteriorated efficiency in Quality of Care `1`. In addition, it has considerable implications on surgical unit operation. PLOS is a high driver for surgery cancellations. One goal of public health management is to reduce PLOS by identifying its most relevant predictors and initiating mitigations early in the care pathway. The objective of this project is to explore Machine Learning (ML) models that best predict PLOS and then deploy the model. The successful proof of concept will see a hospital operation leader upload (anonymous) information and receive a risk profile and predicted LOS for the patients on the ward.  
@@ -336,7 +340,7 @@ A sample output of two LOS predictions is shown below:
 
 # Conclusion
 
-The ability to predict length of stay and/or identify subjects at risk of prolonged LOS immediately following a surgical procedure has significatn operational and patient care implications. The models in this project have shown a reliable model is within the realm of "possible", but with more validation work required. 
+The ability to predict length of stay and/or identify subjects at risk of prolonged LOS immediately following a surgical procedure has significant operational and patient care implications. The models in this project have shown that a reliable model is within the realm of "possible", but with more validation work required. 
 
 The regression model was able to predict a LOS, but with admitedly underwhelming metrics (R2 ~0.5). The categorization model demonstrated acceptable metrics (Specificiy and Sensitivity of 0.72 and 0.91 respectively). That said, a subject with 'dummy' information that by all rational accounts should have seen an extended LOS, was not predicted as such. In that example: the patient was 95 years old, a resting hear rate of 20, in the OR for 300min, undergoing a heart-related procedure and had a visit to ICU... was not predicted to have a PLOS. Perhaps this is an example of where what makes 'sense' is proven incorrect by science.
  
@@ -347,3 +351,6 @@ The regression model was able to predict a LOS, but with admitedly underwhelming
 * [ ] Create an 'intermediate' categorization - currently either LOS (very specific) and Prolonged (binary). Create bins to represent 'degree' of PLOS
 * [ ] Broaden data set - currently constrained to INSPIRE. Include other data sets such as MIMIC, PMSI,HiRID,AUMC
 * [ ] UI/UX, deployment, and interface with EMR considerations
+
+# References
+
