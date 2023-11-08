@@ -176,17 +176,17 @@ Feature categories:
 
 Demographics: 
 
-> <center><img src="_images/PCA_Demo_features_selected.svg" alt="" style="height: auto; width:50%;"/>  </center>
+> <center><img src="_images/PCA_Demo_features_selected.svg" alt="" style="height: auto; width:40%;"/>  </center>
   
 Operations: 
-> <center><img src="_images/PCA_ Operation_features_selected.svg" alt="" style="height: auto; width:50%;"/> </center>
+> <center><img src="_images/PCA_ Operation_features_selected.svg" alt="" style="height: auto; width:40%;"/> </center>
 
 Procedure:   
-><center> <img src="_images/PCA_Procedure_features_selected.svg" alt="" style="height: auto; width:50%;"/> </center>
+><center> <img src="_images/PCA_Procedure_features_selected.svg" alt="" style="height: auto; width:40%;"/> </center>
 
 
 Clinicial: 
-><center><img src="_images/PCA_Clinical_features_selected.svg" alt="" style="height: auto; width:50%;"/> </center>
+><center><img src="_images/PCA_Clinical_features_selected.svg" alt="" style="height: auto; width:40%;"/> </center>
 
 ### Impact of PCA on Feature Selection:   
 
@@ -194,7 +194,7 @@ The most impactful 47 features of the original, encoded data set have been ident
 
 The features selected for future analysis and inclusion in the modelling are provide below with a description: 
 
-><center><img src="_images/PCA_FINAL_features_selected.svg" alt="" style="height: auto; width:50%;"/> </center>  
+><center><img src="_images/PCA_FINAL_features_selected.svg" alt="" style="height:auto; width:40%;"/> </center>  
 
 <br>
 <br>
@@ -202,39 +202,52 @@ The features selected for future analysis and inclusion in the modelling are pro
 
 # Machine Learning Models
 
+## Regression or Classification?
 
+>Notebook: [06.Regression_Model](_src\06.Regression_Model_CatBoost.ipynb)  
+>Notebook: [07.Category_Model](_src\07.Category_Model_CatBoost.ipynb)
+
+Model selection, either 'regression' or 'categorization' was contemplated throughout the project. A regression problem (ie predict the length of days) would provide the most utility for a hospital manager and involved the fewest assumptions from the data scientist. Said differently, a discrete LOS prediction could be used under varying operational conditions. However, given the diversity of the dataset features it was anticpated to be 'imprecise'.  
+
+On the alternative, a categorical classification (within window or prolonged LOS) could potentially allow for more flexibility in the model. However, such a model also depends upon hard-coded assumptions to define a prolonged LOS. The model is rendered useless if the circumstances change or the definition of 'prolonged'.
+
+In an effort to cover address both pros/cons.... we did both! :: a regression model and a classification model.
 
 ## Training 
 
-
 ### Data Split
-* Training Set: Used to train your models.  
-* Validation Set: Used to fine-tune hyperparameters, select models, and monitor training progress. 
-* Testing Set: Used to evaluate the final model's performance on unseen data and estimate its generalization performance.
 
->![Alt text](_images/train_test_val_split.png)
+The ~100,000 records and corresponding Features (X) in the dataframe were split into a `Training` Set (80% of total). These were used to train the models.The `Validation` set was a further 20% split of Traning Set. Validation sets are user fine-tune hyperparameters, select models, and monitor training progress. Lastly the `Testing` Set consisted of 20% of total. The Testing set is used to evaluate the final model's performance on unseen data and estimate its generalization performance. Finally, in the categocial model, an additional parameter `stratify` was specified to mitigate any class imbalance between PLOS and LOS. 
+><center><img src="_images/train_test_val_split.png" alt="" style="height:auto; width:40%;"/> </center>  
 
+### Scaling / Normalization
 
-## Evaluation
+Following the split into Train/Validaiton/Test data sets, features in the X (predictors) were scaled. The Standardscalar was used on numerical fields to ensure bias was not introduced into the training. Values in the Y data sets were not scaled. 
 
-### Baseline Models (no hyperparameter tuning)  
+## Regression Models
+### Baseline Evaluation
 
-> Linear Regression  
-> ![Alt text](_images/baselines/LinearRegression_baseline_1category.png)
+Linear Regression models used in the proejct included the following, and were initially evaluated using R-squared and RMSE (Root Mean Squared Error). 
 
-> Random Forest  
-> ![Alt text](_images/baselines/RandomForest_baseline_1category.png)
+- Linear Regression
+- Random Forest
+- ExtraTrees
+- XGBoost
+- CatBoost (meow!)
 
-> Extra Trees
-> ![Alt text](_images/baselines/ExtraTrees_baseline_1category.png)
+The baseline model performace was 'underwhelming'. An alternative model, CatBoost was identified and selected as it was known to accomodate categorical features well. Considering many of the features were a result of the 1-hot encoding, it gave optimism. 
 
-> XGBoost
-> ![Alt text](_images/baselines/XGB_baseline_1category.png)
+|Model| R-squared |RMSE |  
+|-----|-----------|-----|
+|LinearRegression|-29046|9515250466|  
+|RandomForest|0.49|  3.99|
+|ExtraTrees|0.48|  4.03|
+|XGB|0.49|4.00| 
+|CatBoost|0.52|3.884|
 
-> CatBoost  
-> CatBoost is designed specifically with a focus on categorical feature handling. It uses a specialized method for encoding categorical variables called "Ordered Target Encoding." CatBoost automatically detects and encodes categorical features without manual intervention (ie 1-hot encoding). It also includes techniques like "Ordered Boosting" and "Bayesian Regularization" to improve performance and reduce overfitting.
-> 
-> ![Alt text](_images/baselines/CatBoost_baseline_1category.png)
+> CatBoost :  
+> CatBoost is designed specifically with a focus on categorical feature handling. It uses a specialized method for encoding categorical variables called "Ordered Target Encoding." CatBoost automatically detects and encodes categorical features without manual intervention (ie 1-hot encoding). It also includes techniques like "Ordered Boosting" and "Bayesian Regularization" to improve performance and reduce overfitting [catboost.ai](https://catboost.ai/).
+
 
 ### Hyperparameter Tuning
 
@@ -247,11 +260,32 @@ For following grid paramaters were evaluated:
 
 > ![Alt text](_images/optimized/CatBoostRegressor_tuned_1category.png)
 
+### Evaluation of Optimized Regression Model
+
+The CatBoost regression model yieled an RMSE of 0.4375. The model's performance can be visualized in the following charts. 
+
+>Residual Plot:  
+><center><img src="_images\regression_residuals.png" alt="" style="height:auto; width:40%;"/> </center>  
+  
+
+>Regression Acutal vs Predicted:   
+><center><img src="_images\regression_actual_vs_pred.png" alt="" style="height:auto; width:40%;"/> </center>
+
+>Regression Resitual Histogram:   
+><center><img src="_images\regression_residuals_histo.png" alt="" style="height:auto; width:40%;"/> </center>
+
+
+## Regression Models
+### Baseline Evaluation
+### Hyperparameter Tuning
+### Evaluation of Optimized Regression Model
+
+
+
 # Deployment
 
-# Discussion
-
 # Conclusion
+
 
 # Future Considerations
 
