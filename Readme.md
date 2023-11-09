@@ -4,7 +4,7 @@
 
 # Overview
 
-Prolonged Hospital Length of Stay (PLOS) is an indicator of deteriorated efficiency in Quality of Care `1`. In addition, it has considerable implications on surgical unit operation. PLOS is a high driver for surgery cancellations. One goal of public health management is to reduce PLOS by identifying its most relevant predictors and initiating mitigations early in the care pathway. The objective of this project is to explore Machine Learning (ML) models that best predict PLOS and then deploy the model. The successful proof of concept will see a hospital operation leader upload (anonymous) information and receive a risk profile and predicted LOS for the patients on the ward.  
+Prolonged Hospital Length of Stay (PLOS) is recognized quality indicator acute care settings`ref:1,2`. In addition, it has considerable implications on surgical unit operation. PLOS is a high driver for surgery cancellations. One goal of public health management is to reduce PLOS by identifying its most relevant predictors and initiating mitigations early in the care pathway. The objective of this project is to explore Machine Learning (ML) models that best predict PLOS and then deploy the model. The successful proof of concept will see a hospital operation leader upload (anonymous) information and receive a risk profile and predicted LOS for the patients on the ward.  
 
 ![Alt text](_images/carepathway_illustrated.svg)
 
@@ -14,7 +14,7 @@ The post-oparative legnth of stay (LOS) and correspondingly, the risk of prolong
 
 # Dataset
 
-The INSPIRE dataset is a publicly available research dataset in perioperative medicine, which includes approximately 130,000 cases who underwent anesthesia for surgery at an academic institution in South Korea between 2011 and 2020. This dataset includes patient characteristics such as age, sex, physical status classification, diagnosis, surgical procedure code, department, and type of anesthesia. It also includes vital signs in the operating theatre, general wards, and intensive care units (ICUs), laboratory results from six months before admission to six months after discharge, and medication during hospitalization. `2`
+The INSPIRE dataset is a publicly available research dataset in perioperative medicine, which includes approximately 130,000 cases who underwent anesthesia for surgery at an academic institution in South Korea between 2011 and 2020. This dataset includes patient characteristics such as age, sex, physical status classification, diagnosis, surgical procedure code, department, and type of anesthesia. It also includes vital signs in the operating theatre, general wards, and intensive care units (ICUs), laboratory results from six months before admission to six months after discharge, and medication during hospitalization. `ref:3`
 
 # Methods
  * [ ] Database preparation
@@ -354,3 +354,6 @@ The regression model was able to predict a LOS, but with admitedly underwhelming
 
 # References
 
+1. Jaotombo F, Pauly V, Fond G, Orleans V, Auquier P, Ghattas B, Boyer L. Machine-learning prediction for hospital length of stay using a French medico-administrative database. J Mark Access Health Policy. 2022 Nov 26;11(1):2149318. doi: 10.1080/20016689.2022.2149318. PMID: 36457821; PMCID: PMC9707380.
+2. Chrusciel, J., Girardon, F., Roquette, L. et al. The prediction of hospital length of stay using unstructured data. BMC Med Inform Decis Mak 21, 351 (2021). https://doi.org/10.1186/s12911-021-01722-4
+3. Goldberger, A., Amaral, L., Glass, L., Hausdorff, J., Ivanov, P. C., Mark, R., ... & Stanley, H. E. (2000). PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals. Circulation [Online]. 101 (23), pp. e215–e220.
