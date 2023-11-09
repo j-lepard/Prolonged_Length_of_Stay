@@ -6,7 +6,7 @@
 
 Prolonged Hospital Length of Stay (PLOS) is recognized quality indicator acute care settings`ref:1,2`. In addition, it has considerable implications on surgical unit operation. PLOS is a high driver for surgery cancellations. One goal of public health management is to reduce PLOS by identifying its most relevant predictors and initiating mitigations early in the care pathway. The objective of this project is to explore Machine Learning (ML) models that best predict PLOS and then deploy the model. The successful proof of concept will see a hospital operation leader upload (anonymous) information and receive a risk profile and predicted LOS for the patients on the ward.  
 
-![Alt text](_images/carepathway_illustrated.svg)
+![Alt text](_images/carepathway_illustrated2.svg)
 
 # Hypothesis
 
