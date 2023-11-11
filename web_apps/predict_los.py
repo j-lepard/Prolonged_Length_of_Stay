@@ -18,8 +18,8 @@ import warnings
 # TODO: return here to ensure bug-free. Re-instert the preprocessor step
 # TODO: Revise UI on streamlit.
 
-model = pickle.load(open('../artifacts/catboost_model_regression_opt.pickle','rb'))
-# preprocessor = pickle.load(open('../artifacts/preprocessor.pickle','rb'))
+model = pickle.load(open('../output/catboost_model_regression_opt.pickle','rb'))
+preprocessor = pickle.load(open('../output/preprocessor.pickle','rb'))
 
 def predict_los(uploaded_df):
     input=uploaded_df
