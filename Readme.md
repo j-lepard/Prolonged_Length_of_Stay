@@ -338,6 +338,12 @@ A sample output of two LOS predictions is shown below:
 |	0GT	|90	|F	|80	|3.228563|	0
 |	0GT	|60	|F	|50|	1.898183	|0
 
+In the final aspect of the project, an end-end workflow was developed. The User (presumably Clinical Nurse Coordinator) can upload a csv (or text) file with the post-op data for a list of patients, click the "Predict LOS" button and the web-page returns the predicted length of stay for each subject. 
+
+The functional wireframe is shown below: 
+
+![Alt text](_images/wireframe_UI.png)
+
 # Conclusion
 
 The ability to predict length of stay and/or identify subjects at risk of prolonged LOS immediately following a surgical procedure has significant operational and patient care implications. The models in this project have shown that a reliable model is within the realm of "possible", but with more validation work required. 
