@@ -13,13 +13,13 @@ from sklearn.pipeline import Pipeline
 import warnings
 
 ###################
-# TODO: GridSearch on models
-# TODO: Pickle the best model.
-# TODO: return here to ensure bug-free. Re-instert the preprocessor step
+# 
+# 
+# TODO: Re-instert the preprocessor step
 # TODO: Revise UI on streamlit.
 
-model = pickle.load(open('../output/catboost_model_regression_opt.pickle','rb'))
-preprocessor = pickle.load(open('../output/preprocessor.pickle','rb'))
+model = pickle.load(open('../output/catboost_model_regression.pickle','rb'))
+preprocessor = pickle.load(open('../output/preprocessor_cat.pickle','rb'))
 
 def predict_los(uploaded_df):
     input=uploaded_df
